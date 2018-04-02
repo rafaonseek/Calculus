@@ -1,0 +1,54 @@
+#%RAML 1.0
+title: Calculus
+version: v1
+baseUri: http://api.samplehost.com
+types:
+  TestType:
+    type: object
+    properties:
+      id: number
+      optional?: string
+      expanded:
+        type: object
+        properties:
+          count: number
+/helloWorld:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "message" : "Hello World"
+              }
+
+/calculator:
+  post:
+    description: Add an Operation
+
+    responses:
+
+  /{operatorionId}:
+    put:
+      description: Update an existing Operation
+      responses:
+    delete:
+      description: Delete an Operation
+      responses:
+    get:
+      description: Obtain Operation
+      responses:
+        200:
+          body:
+
+    /deleteOperation:
+      get:
+        description: Delete HTTP Verb Override Operation
+        responses:
+  /calculate:
+    get:
+      description: Do a Calculation Without record on Database
+      responses:
+        200:
+          
