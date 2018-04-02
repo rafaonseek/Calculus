@@ -1,0 +1,113 @@
+#%RAML 1.0
+title: Calculus
+version: v1
+baseUri: https://mocksvc.mulesoft.com/mocks/23cea649-f787-4cc7-8dc3-9e4194b4b821 # baseUri: http://api.samplehost.com
+
+types:
+  Operation:
+    type: object
+    description: Calculate Operation Object Definition
+    properties:
+      operationId:
+        type: number
+        required: true
+        description: Operation ID on Database
+        example: 10
+      operand1:
+        type: number
+        required: true
+        description: Operand 1
+        example: 10
+      operand2:
+        type: number
+        required: true
+        description: Operand 2
+        example: 20
+      operator:
+        type: string
+        required: true
+        description: Operator (Multiplication, Division, Subtraction, Addition)
+        example: Addition
+      result:
+        type: number
+        required: true
+        description: Result Value
+        example: 30
+
+/calculator:
+  post:
+    displayName: addOperation
+    description: Add an Operation
+    body:
+     application/json:
+       type: Operation
+    responses:
+      201:
+        description: Successful Operation
+        body:
+          application/json:
+            type: Operation
+      405:
+        description: Invalid Input
+  /{operatorionId}:
+    description: Operation Identification on Database
+    put:
+      displayName: updateOperation
+      description: Update an existing Operation
+      responses:
+        200:
+          body:
+            application/json:
+              type: Operation
+    delete:
+      displayName: deleteOperation
+      description: Delete an Operation
+      responses:
+        200:
+          body:
+            application/json:
+              type: Operation
+    get:
+      displayName: getOperation
+      description: Obtain Operation
+      responses:
+        200:
+          body:
+            application/json:
+              type: Operation
+
+    /deleteOperation:
+      get:
+        displayName: getOperationOverrideDelete
+        description: Delete HTTP Verb Override Operation
+        responses:
+  /calculate:
+    get:
+      displayName: doOperationWithoutRecord
+      description: Do a Calculation Without record on Database
+      queryParameters:
+        operand1:
+          displayName: First Operand
+          type: number
+          example: 10
+          required: true
+        operand2:
+          displayName: Second Operand
+          type: number
+          example: 20
+          required: true
+        operator:
+          displayName: Operator
+          type: string
+          example: multiplication
+          required: true
+      responses:
+        200:
+          description: Successful Operation
+          body:
+            application/json:
+              type: Operation
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Operation not found
